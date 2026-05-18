@@ -12,6 +12,7 @@ Load AOI boundary from Earth Engine assets.
 Convert feature collection into geometry.
 Simplify geometry for faster processing.
 Set map visualization and satellite basemap.
+
 # Purpose
 
 # Defines the geographic region where aquaculture mapping is performed.
@@ -34,6 +35,7 @@ Create median composite from yearly Sentinel-1 collection.
 Extract:
 VV band
 VH band
+
 # Purpose
 
 Reduces speckle noise and creates a stable annual representation.
@@ -44,7 +46,7 @@ The SAR-derived water index is computed using:
 
 SDWI=(VV+VH)×10
 
-Purpose
+# Purpose
 
 Enhances separation between water and non-water surfaces.
 
@@ -68,7 +70,8 @@ Load SRTM DEM.
 Generate slope layer.
 Keep only flat regions:
 Slope < 5°
-Purpose
+
+# Purpose
 
 Removes hill shadows and terrain-induced SAR artifacts.
 
@@ -110,6 +113,7 @@ Calculate connected pixel count.
 Remove small isolated patches.
 Criteria
 Connected Pixels ≥ 30
+
 # Purpose
 
 Removes noise and retains significant water bodies.
@@ -118,6 +122,7 @@ Removes noise and retains significant water bodies.
 Convert raster water mask into polygons.
 Reproject to EPSG:4326.
 Use reduceToVectors().
+
 # Purpose
 
 Creates vector features for geometric analysis.
@@ -149,7 +154,7 @@ Area
 	​
 
 
-Purpose
+# Purpose
 
 Aquaculture ponds typically exhibit rectangular and compact geometry.
 
@@ -162,7 +167,8 @@ Parameter	Threshold
 Area	500 – 300000 m²
 Rectangularity	> 0.35
 Compactness	> 0.05
-Purpose
+
+# Purpose
 
 Separates aquaculture ponds from rivers, lakes, and irregular wetlands.
 
@@ -174,7 +180,8 @@ Create monthly Sentinel-1 composite.
 Compute SDWI.
 Apply water thresholds.
 Apply terrain mask.
-Purpose
+
+# Purpose
 
 Tracks temporal persistence of water.
 
@@ -186,7 +193,8 @@ Water Frequency =
 Sum of Monthly Water Masks
 Stable Water Rule
 Water Present ≥ 10 Months
-Purpose
+
+# Purpose
 
 Identifies permanent or semi-permanent water bodies.
 
@@ -198,7 +206,8 @@ Majority filtering
 Connected pixel filtering
 Criteria
 Connected Pixels ≥ 20
-Purpose
+
+# Purpose
 
 Removes unstable seasonal noise.
 
@@ -210,7 +219,8 @@ Parameter	Threshold
 Area	1000 – 300000 m²
 Rectangularity	> 0.35
 Compactness	> 0.05
-Purpose
+
+# Purpose
 
 Extracts long-term operational aquaculture ponds.
 
@@ -219,7 +229,8 @@ Vector Export
 Stable aquaculture ponds as SHP.
 Raster Export
 Stable water mask raster.
-Purpose
+
+# Purpose
 
 Provides GIS-ready outputs for analysis and reporting.
 
@@ -232,10 +243,17 @@ Stable water layer
 Aquaculture pond polygons
 Stable aquaculture layer
 Water persistence map
-Technologies Used
+
+# Technologies Used
+
 Google Earth Engine
 Copernicus Programme Sentinel-1 SAR
 SRTM DEM
 GLCM Texture Analysis
 Morphological Image Processing
 Connected Component Analysis
+
+# # ## Google Earth Engine Script
+
+https://code.earthengine.google.com/b6e5d43311e2b44c16aa0a00f196f9c7
+
